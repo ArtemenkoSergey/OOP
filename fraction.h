@@ -8,9 +8,11 @@
 // 	Static-счетчик количества существующих объектов класса.
 // 	В подходящих для этого методах, используйте параметры по умолчанию.
 // 	Используйте в конструкторах список инициализации. 
-
+#pragma once
 #include <iostream>
 
+#define NO_ERRORS 0
+#define SET_ZERO_DENOMINATOR_ERROR -1
 
 class Fraction
 {
@@ -23,21 +25,26 @@ private:
 	int reduction();
 
 public:
-	Fraction(unsigned int numerator=0, unsigned int denominator=1);
+	Fraction(int numerator=0, int denominator=1);
 	Fraction(const Fraction &other);
 	~Fraction();
 
-	static unsigned int getCount();
-	int setFraction(unsigned int numerator=0, unsigned int denominator=1);
+	static unsigned int getCount() {return count;}
+	int setFraction(int numerator=0, int denominator=1);
 	
 	// int getStr();
 	double getDouble();
 	
-	int input();
-	int show();
+	void input();
+	void show();
 
 	int add(const Fraction &other);
 	int sub(const Fraction &other);
 	int mul(const Fraction &other);
 	int div(const Fraction &other);
 };
+
+// static unsigned int Fraction::getCount()
+// {
+// 	return count;
+// }

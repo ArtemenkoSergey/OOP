@@ -1,8 +1,7 @@
 
 #include "fraction.h"
 
-#define NO_ERRORS 0
-#define SET_ZERO_DENOMINATOR_ERROR -1
+
 
 
 unsigned int GCD(unsigned int a, unsigned int b);
@@ -11,11 +10,11 @@ unsigned int LCM(unsigned int a, unsigned int b);
 unsigned int Fraction::count = 0;
 
 
-Fraction::Fraction(unsigned int n, unsigned int d)
+Fraction::Fraction(int n, int d)
 {
 	count++;
-	int err = setFraction(n,d);
-	std::cout << "Fraction(int int). count=" << count << std::endl;
+	setFraction(n,d);
+	// std::cout << "Fraction(int int). count=" << count << std::endl;
 }
 
 Fraction::Fraction(const Fraction &other)
@@ -29,10 +28,10 @@ Fraction::Fraction(const Fraction &other)
 Fraction::~Fraction()
 {
 	count--;
-	std::cout << "~Fraction(). count=" << count << std::endl;
+	// std::cout << "~Fraction(). count=" << count << std::endl;
 }
 
-int Fraction::setFraction(unsigned int n, unsigned int d)
+int Fraction::setFraction(int n, int d)
 {
 	sign = 1;
 	// std::cout << (int)sign << " " << n << " " << d << " " << std::endl;
@@ -49,7 +48,7 @@ int Fraction::setFraction(unsigned int n, unsigned int d)
 		denominator = 1;
 		return SET_ZERO_DENOMINATOR_ERROR;
 	}
-	// reduction();
+	reduction();
 	return NO_ERRORS;
 }
 
@@ -63,24 +62,29 @@ int Fraction::reduction()
 }
 
 
-int Fraction::input()
+void Fraction::input()
 {
-	int n, d;
-	std::cout << "numerator: ";
-	std::cin >> n;
-	std::cout << "denominator: ";
-	std::cin >> d;
-
-	int err = setFraction(n,d);
-	return err;
+	int err = 1;
+	std::cout << "введите числитель и знаменатель дроби: " << std::endl;
+	while (err != 0)
+	{
+		int n, d;
+		std::cout << "числитель: ";
+		std::cin >> n;
+		std::cout << "знаменатель: ";
+		std::cin >> d;
+	
+		int err = setFraction(n,d);
+		if (err != NO_ERRORS)
+			std::cout << "Ошибка ввода данных. Повтороно введите числитель и знаменатель." << std::endl;
+	}
 }
 
-int Fraction::show()
+void Fraction::show()
 {
 	if (sign == -1)
-		std::cout << " -- ";
-	std::cout << numerator << " / " << denominator << std::endl;
-	return NO_ERRORS;
+		std::cout << "-";
+	std::cout << numerator << "/" << denominator;
 }
 
 // int Fraction::getStr()
@@ -107,12 +111,12 @@ int Fraction::sub(const Fraction &other)
 
 int Fraction::mul(const Fraction &other)
 {
-	return setFraction(numerator*other.numerator, denominator*other.denominator);
+	return setFraction(sign*numerator*other.sign*other.numerator, denominator*other.denominator);
 }
 
 int Fraction::div(const Fraction &other)
 {	
-	return setFraction(numerator*other.denominator, denominator*other.numerator);
+	return setFraction(sign*numerator*other.sign*other.denominator, denominator*other.numerator);
 }
 
 
