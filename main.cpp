@@ -2,9 +2,21 @@
 
 int main(int argc, char const *argv[])
 {
-	Fraction a;
+	Fraction a(1,2), b(1,3);
+	Fraction c(a);
 	a.show();
-	a.input();
+	b.show();
+
+	a.sub(b);
 	a.show();
+
+	
+	c.show();
+
+	a.mul(b);
+	b.div(c);
+	a.show();
+	b.show();
+
 	return 0;
 }

@@ -9,31 +9,35 @@
 // 	В подходящих для этого методах, используйте параметры по умолчанию.
 // 	Используйте в конструкторах список инициализации. 
 
+#include <iostream>
+
+
 class Fraction
 {
 private:
-	long int numerator;
-	long int denominator;
+	unsigned int numerator;
+	unsigned int denominator;
 	char sign;
-	static unsigned int counter;
+	static unsigned int count;
+
+	int reduction();
+
 public:
-	Fraction();
-	Fraction(long int numerator, long int denominator=1);
-	Fraction(double);
+	Fraction(unsigned int numerator=0, unsigned int denominator=1);
+	Fraction(const Fraction &other);
 	~Fraction();
 
-	int setFraction(long int numerator, long int denominator);
-	int setFraction(double);
-	int getStr();
+	static unsigned int getCount();
+	int setFraction(unsigned int numerator=0, unsigned int denominator=1);
+	
+	// int getStr();
 	double getDouble();
 	
 	int input();
 	int show();
 
-	int reduction();
-
-	int add(Fraction other);
-	int sub(Fraction other);
-	int mul(Fraction other);
-	int div(Fraction other);
+	int add(const Fraction &other);
+	int sub(const Fraction &other);
+	int mul(const Fraction &other);
+	int div(const Fraction &other);
 };
