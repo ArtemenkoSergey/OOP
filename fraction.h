@@ -19,7 +19,6 @@ class Fraction
 private:
 	unsigned int numerator;
 	unsigned int denominator;
-	char sign;
 	static unsigned int count;
 
 	int reduction();

@@ -4,7 +4,7 @@ CCFLAGS =-Wall -std=c++11
 CLEAN = rm -f
 PROG_NAME = a.out
 OBJECT_FILES = *.o
-SOURCE_FILES = fraction.cpp conteiner.cpp main.cpp 
+SOURCE_FILES = fraction.cpp conteiner.cpp menu.cpp main.cpp 
 
 $(PROG_NAME): $(OBJECT_FILES)
 	$(CC) $(CCFLAGS) -o $@ $^

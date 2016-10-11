@@ -19,9 +19,13 @@ Fraction::Fraction(int n, int d)
 
 Fraction::Fraction(const Fraction &other)
 {
-	sign = other.sign;
-	numerator = other.numerator;
-	denominator = other.denominator;
+	if (other!=NULL)
+	{
+		numerator = other.numerator;
+		denominator = other.denominator;
+	}
+	else
+		setFraction(0,1);
 	count++;
 }
 
@@ -33,12 +37,9 @@ Fraction::~Fraction()
 
 int Fraction::setFraction(int n, int d)
 {
-	sign = 1;
 	// std::cout << (int)sign << " " << n << " " << d << " " << std::endl;
-	sign *= (n>=0)? 1:-1;
-	sign *= (d>=0)? 1:-1;
-	n *= (n>=0)? 1:-1;
-	d *= (d>=0)? 1:-1;
+	n *= (d < 0)? -1 : 1;
+	d *= (d < 0)? -1 : 1;
 	// std::cout << (int)sign << " " << n << " " << d << " "  << std::endl;
 	numerator = n;
 	if (d!=0){
@@ -82,8 +83,6 @@ void Fraction::input()
 
 void Fraction::show()
 {
-	if (sign == -1)
-		std::cout << "-";
 	std::cout << numerator << "/" << denominator;
 }
 
@@ -98,25 +97,25 @@ double Fraction::getDouble()
 int Fraction::add(const Fraction &other)
 {
 	unsigned int lcm = LCM(denominator, other.denominator);
-	long int tNumerator = sign*(numerator*lcm/denominator)+other.sign*(other.numerator*lcm/other.denominator);
+	long int tNumerator = (numerator*lcm/denominator)+(other.numerator*lcm/other.denominator);
 	return setFraction(tNumerator,lcm);
 }
 
 int Fraction::sub(const Fraction &other)
 {
 	unsigned int lcm = LCM(denominator, other.denominator);
-	long int tNumerator = sign*(numerator*lcm/denominator)-other.sign*(other.numerator*lcm/other.denominator);
+	long int tNumerator = (numerator*lcm/denominator)-(other.numerator*lcm/other.denominator);
 	return setFraction(tNumerator,lcm);
 }
 
 int Fraction::mul(const Fraction &other)
 {
-	return setFraction(sign*numerator*other.sign*other.numerator, denominator*other.denominator);
+	return setFraction(numerator*other.numerator, denominator*other.denominator);
 }
 
 int Fraction::div(const Fraction &other)
 {	
-	return setFraction(sign*numerator*other.sign*other.denominator, denominator*other.numerator);
+	return setFraction(numerator*other.denominator, denominator*other.numerator);
 }
 
 

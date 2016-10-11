@@ -90,3 +90,8 @@ void Conteiner::showAll() const
 		std::cout << std::endl;
 	}
 }
+
+int Conteiner::getLenght() const
+{
+	return lenght;
+}

@@ -15,7 +15,7 @@ class Conteiner
 private:
 	Fraction** Array;
 	int lenght;
-
+	
 	void reSize();
 	int findFree();
 public:
@@ -26,5 +26,6 @@ public:
 	Fraction* getItem(int index);
 	int delItem(int index);
 
+	int getLenght() const;
 	void showAll() const;
 };
