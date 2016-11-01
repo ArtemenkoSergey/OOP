@@ -84,7 +84,7 @@ void Conteiner::showAll() const
 	{
 		std::cout << std::setw(5) << i << " : ";
 		if (Array[i]!=NULL)
-			Array[i]->show();
+			Array[i]->toStr();
 		else
 			std::cout << "пусто";
 		std::cout << std::endl;

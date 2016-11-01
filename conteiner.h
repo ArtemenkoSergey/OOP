@@ -3,7 +3,8 @@
 #include <iostream>		// cout
 #include <iomanip>		// setw()
 
-#define NO_ERRORS 0
+
+// #define NO_ERRORS 0
 #define DELETE_NULL_PTR_ERROR -2
 #define NOT_FIND_FREE_ERROR -1
 
