@@ -74,7 +74,7 @@ void mainMenu(myString** A, int len)
 				{
 					std::cout << std::setw(5) << i << " : ";
 					if (A[i] != NULL)
-						std::cout << A[i]->strAddr() << std::endl;
+						std::cout << A[i]->getAddr() << std::endl;
 					else
 						std::cout << "Пустой элемент" << std::endl;
 				}
@@ -210,7 +210,7 @@ void changeStringMenu(myString** A, int len)
 		}
 		std::cout << std::endl;
 		std::cout << "Выбранная строка после изменения:" << std::endl;
-		std::cout << A[s]->strAddr() << std::endl;
+		std::cout << A[s]->getAddr() << std::endl;
 	}
 }
 
@@ -222,7 +222,7 @@ void callMetodMenu(myString** A, int len)
 	while(s >= 0)
 	{
 		std::cout << std::endl;
-		std::cout << "1. size_t strSize() const" << std::endl;
+		std::cout << "1. size_t getSize() const" << std::endl;
 		std::cout << "2. void clear()" << std::endl;
 		std::cout << "3. bool empty() const" << std::endl;
 		std::cout << "4. void swap(myString& tStr)" << std::endl;
@@ -239,23 +239,23 @@ void callMetodMenu(myString** A, int len)
 		switch (ch)
 		{
 			case '1':
-				std::cout << "Количество символов занимаемых строкой: "<< A[s]->strSize() << std::endl;
+				std::cout << "Количество символов занимаемых строкой: "<< A[s]->getSize() << std::endl;
 				return;
 			case '2':
 				A[s]->clear();
-				std::cout << "Строка после работы метода: " << A[s]->strAddr() << std::endl;
+				std::cout << "Строка после работы метода: " << A[s]->getAddr() << std::endl;
 				return;
 			case '3':
 				if (A[s]->empty())
 					std::cout << "Строка пустая" << std::endl;
 				else
-					std::cout << "Строка не пустая: " << A[s]->strAddr() << std::endl;
+					std::cout << "Строка не пустая: " << A[s]->getAddr() << std::endl;
 				return;
 			case '4':
 				t = selectStringMenu(A, len);
 				A[s]->swap(*(A[t]));
-				std::cout << "Строка 1 после работы метода: " << A[s]->strAddr() << std::endl;
-				std::cout << "Строка 2 после работы метода: " << A[t]->strAddr() << std::endl;
+				std::cout << "Строка 1 после работы метода: " << A[s]->getAddr() << std::endl;
+				std::cout << "Строка 2 после работы метода: " << A[t]->getAddr() << std::endl;
 				return;
 			case '5':
 				do
@@ -271,8 +271,8 @@ void callMetodMenu(myString** A, int len)
 						std::cerr << "Invalid argument error: " << ex.what() << std::endl;
 					}
 				}while(1);
-				std::cout << "Подстрока: " << A[t]->strAddr() << std::endl;
-				std::cout << "в строке: " << A[s]->strAddr() << std::endl;
+				std::cout << "Подстрока: " << A[t]->getAddr() << std::endl;
+				std::cout << "в строке: " << A[s]->getAddr() << std::endl;
 				std::cout << "Найдена " << r << " раз" << std::endl;
 				return;
 			case '6':
@@ -294,7 +294,7 @@ void callMetodMenu(myString** A, int len)
 						std::cerr << "Out of range error: " << ex.what() << std::endl;
 					}
 				}while(1);
-				std::cout << "Символ " << a <<  " в строке: " << A[s]->strAddr() << std::endl;
+				std::cout << "Символ " << a <<  " в строке: " << A[s]->getAddr() << std::endl;
 				std::cout << "Найден " << r << " раз" << std::endl;
 				return;
 			case '7':
@@ -311,8 +311,8 @@ void callMetodMenu(myString** A, int len)
 						std::cerr << "Invalid argument error: " << ex.what() << std::endl;
 					}
 				}while(1);
-				std::cout << "Подстрока: " << A[t]->strAddr() << std::endl;
-				std::cout << "в строке: " << A[s]->strAddr() << std::endl;
+				std::cout << "Подстрока: " << A[t]->getAddr() << std::endl;
+				std::cout << "в строке: " << A[s]->getAddr() << std::endl;
 				if ( r >= 0)
 					std::cout << "Найдена на позиции " << r << std::endl;
 				else
@@ -326,7 +326,7 @@ void callMetodMenu(myString** A, int len)
 				std::cin >> start >> end;
 				std::cin.ignore();
 				r = A[s]->find(a, start, end);
-				std::cout << "Символ " << a <<  " в строке: " << A[s]->strAddr() << std::endl;
+				std::cout << "Символ " << a <<  " в строке: " << A[s]->getAddr() << std::endl;
 				if ( r >= 0)
 					std::cout << "Найден на позиции " << r << std::endl;
 				else
@@ -350,7 +350,7 @@ int selectStringMenu(myString** A, int len)
 		{
 			std::cout << std::setw(5) << i << " : ";
 			if (A[i] != NULL)
-				std::cout << A[i+index]->strAddr() << std::endl;
+				std::cout << A[i+index]->getAddr() << std::endl;
 			else
 				std::cout << "Пустой элемент" << std::endl;
 		}
@@ -392,7 +392,7 @@ void changeStringAppendMenu(myString** A, int len, int index)
 	{
 		std::cout << std::endl;
 		std::cout << "Выбранная строка:" << std::endl;
-		std::cout << A[index]->strAddr() << std::endl;
+		std::cout << A[index]->getAddr() << std::endl;
 		std::cout << std::endl;
 		std::cout << "1. Добавить символ" << std::endl;
 		std::cout << "2. Добавить строку введенную со стандартного ввода" << std::endl;
@@ -460,7 +460,7 @@ void changeStringAssignMenu(myString** A, int len, int index)
 	{
 		std::cout << std::endl;
 		std::cout << "Выбранная строка:" << std::endl;
-		std::cout << A[index]->strAddr() << std::endl;
+		std::cout << A[index]->getAddr() << std::endl;
 		std::cout << std::endl;
 		std::cout << "1. Присвоить значение символа" << std::endl;
 		std::cout << "2. Присвоить значение строки введенной с клавиатуры" << std::endl;
@@ -533,7 +533,7 @@ void changeStringInsertMenu(myString** A, int len, int index)
 	{
 		std::cout << std::endl;
 		std::cout << "Выбранная строка:" << std::endl;
-		std::cout << A[index]->strAddr() << std::endl;
+		std::cout << A[index]->getAddr() << std::endl;
 		std::cout << std::endl;
 		
 		std::cout << "Введите позицию для вставки " << std::endl;
@@ -610,7 +610,7 @@ void changeStringReplaceMenu(myString** A, int len, int index)
 	{
 		std::cout << std::endl;
 		std::cout << "Выбранная строка:" << std::endl;
-		std::cout << A[index]->strAddr() << std::endl;
+		std::cout << A[index]->getAddr() << std::endl;
 		std::cout << std::endl;
 		std::cout << "1. Заменить символ" << std::endl;
 		std::cout << "2. Заменить подстроку" << std::endl;

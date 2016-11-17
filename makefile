@@ -5,6 +5,7 @@ CLEAN = rm -f
 PROG_NAME = a.out
 OBJECT_FILES = *.o
 SOURCE_FILES = myString.cpp main.cpp 
+TEST_FILES = myStringTests.cpp
 
 $(PROG_NAME): $(OBJECT_FILES)
 	$(CC) $(CCFLAGS) -o $@ $^
@@ -12,17 +13,15 @@ $(PROG_NAME): $(OBJECT_FILES)
 $(OBJECT_FILES): $(SOURCE_FILES)
 	$(CC) $(CCFLAGS) -c $^
 
-clean :
-	$(CLEAN) *.o $(PROG_NAME)
+clean:
+	$(CLEAN) *.o $(PROG_NAME) test runner.cpp
 
-test : 
-	$(CC) $(CCFLAGS) test.cpp myString.cpp -o test
+# test: 
+# 	$(CC) $(CCFLAGS) test.cpp myString.cpp -o test
 	
 
-# a.out: fraction.o main.o
-# 	g++ -o fraction.o main.o
+test: runner.cpp
+	$(CC) $(CCFLAGS) runner.cpp myString.cpp -o test
 
-# fraction.o: fraction.c fraction.h
-# 	g++ -c fraction.c 
-
-# main.o: main.c
+runner.cpp: $(TEST_FILES) myString.cpp
+	cxxtestgen --error-printer -o runner.cpp $(TEST_FILES)

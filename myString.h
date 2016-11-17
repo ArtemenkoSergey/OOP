@@ -21,33 +21,25 @@ namespace myStringErrors {
 	const int NOT_FAUND = -1;
 };
 
-namespace myStringConst
-{
-	const size_t minSize = 8;
-}
-
 class myString
 {
 private:
 	char* str;
 	size_t size;
-	size_t maxSize;
 	static unsigned int objCount;
 public:
 	myString();
-	myString(const char* tStr, size_t len=0);
+	myString(const char* t, size_t len=0);
 	myString(const myString &other);
 	myString(const myString &other, size_t pos, size_t len=0);
 	~myString();
 
-	size_t strSize() const;
+	size_t getSize() const;
 	// size_t strLenght();
-	char* strAddr() const;
+	char* getAddr() const;
 
 	void clear();
 	bool empty() const;
-
-	size_t copyToCharArray(char* tStr, const size_t n);
 
 	myString& append(const myString&, size_t pos=0, size_t len=0);
 	myString& append(const char*, size_t n=0);
@@ -79,7 +71,6 @@ public:
 	int find(const char ch, size_t start=0, size_t end=0) const;
 
 private:
-	char* reSize(size_t newSize);
 	bool isInThis(const char* p);
 public:
 	static unsigned int getObjCount();
